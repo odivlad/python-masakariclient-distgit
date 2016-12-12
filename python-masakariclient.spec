@@ -1,8 +1,8 @@
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 
-%global package_name masakariclient
-%global srcname 
+%global package_name python-masakariclient
+%global srcname masakariclient
 
 %define debug_package %{nil}
 
@@ -23,40 +23,20 @@ BuildRequires:  python-pbr
 BuildRequires:  python-setuptools
 BuildRequires:  rdo-rpm-macros
 
-#BuildRequires:  python-oslo-sphinx
-#BuildRequires:  python-sphinx
-#
-## Python requires
-#Requires:   python-eventlet
-#Requires:   python-jsonschema
-#Requires:   python-migrate
-#Requires:   python-paste-deploy
-#Requires:   python-pep8
-#Requires:   python-requests
-#Requires:   python-routes
-#Requires:   python-six
-#Requires:   python-sqlalchemy
-#Requires:   python-stevedore
-#Requires:   python-taskflow
-#Requires:   python-webob
-#
+BuildRequires:  python-oslo-sphinx
+BuildRequires:  python-sphinx
+
+# Python requires
+Requires:   python-argparse
+Requires:   python-pbr
+Requires:   python-prettytable
+Requires:   python-six
+
 ## Openstack requires
-#Requires:   python-keystoneauth1
-#Requires:   python-novaclient
-#Requires:   python-oslo-concurrency
-#Requires:   python-oslo-context
-#Requires:   python-oslo-config
-#Requires:   python-oslo-db
-#Requires:   python-oslo-i18n
-#Requires:   python-oslo-log
-#Requires:   python-oslo-messaging
-#Requires:   python-oslo-middleware
-#Requires:   python-oslo-policy
-#Requires:   python-oslo-serialization
-#Requires:   python-oslo-service
-#Requires:   python-oslo-utils
-#Requires:   python-oslo-versionedobjects
-#Requires:   python2-microversion-parse
+Requires:   python-openstacksdk
+Requires:   python-osc-lib
+Requires:   python-oslo-serialization
+Requires:   python-oslo-utils
 
 
 %description
@@ -74,15 +54,17 @@ rm -f *requirements.txt
 
 %build
 %py2_build
+%{__python2} setup.py build_sphinx
 
 
 %install
 %py2_install
-%{__python2} setup.py build_sphinx
 
 
 %files
-%{python2_sitelib}/%{srcname}*
+%{_bindir}/*
+%{python2_sitelib}/%{srcname}/*
+%{python2_sitelib}/python_%{srcname}/*
 
 
 %changelog
