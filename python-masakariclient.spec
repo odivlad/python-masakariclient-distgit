@@ -64,7 +64,7 @@ rm -f *requirements.txt
 %files
 %{_bindir}/*
 %{python2_sitelib}/%{srcname}/*
-%{python2_sitelib}/python_%{srcname}/*
+%{python2_sitelib}/python_%{srcname}*egg-info/
 
 
 %changelog
