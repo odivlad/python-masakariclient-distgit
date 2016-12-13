@@ -8,7 +8,7 @@
 
 Name:       %{package_name}
 Version:    2.0.0
-Release:    0.test.1%{?dist}
+Release:    CROC1%{?dist}
 Summary:    Python client for Masakari REST API.
 
 License:    ASL 2.0
